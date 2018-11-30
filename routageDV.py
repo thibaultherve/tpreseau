@@ -45,11 +45,7 @@ def maparse(s, src):
     for l in ss[1:]:
         [net,cost]=l.strip().split(": ")
         cost = int(cost)
-        if net in mmap:
-            if cost+1 < mmap[net][0] or mmap[net][1] == src :
-                mmap[net]=(cost+1, src)
-                setroute(net, src)
-        else:
+        if (net not in mmap) or (cost+1 < mmap[net][0]) or (src == mmap[net][1]):
             mmap[net]=(cost+1, src)
             setroute(net, src)
 
